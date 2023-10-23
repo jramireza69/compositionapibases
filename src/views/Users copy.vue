@@ -5,20 +5,12 @@
     <h5 v-if="errorMessage">{{ errorMessage }}</h5>
 
     <div v-if="users.length > 0">
-            
-        
-        <!-- <user-list :users="users">
-
-        </user-list> -->
-        <user-list 
-               :users="users"
-                v-slot="{user}"
-            >
-           <h4>Nombres: {{user.first_name}} {{user.last_name}}</h4>
-           <span>{{user.email}}</span>
-            </user-list>
-                  
-        
+        <ul>
+            <li v-for="{ first_name, last_name, email, id } in users" :key="id">
+                <h4>{{ first_name }} {{ last_name }}</h4>
+                <h6>{{ email }}</h6>
+            </li>
+        </ul>
     </div>
     <div>
 
@@ -33,9 +25,7 @@
 <script>
 
 import useUsers from '../composables/useUsers'
-import UserList from '../components/UserList.vue'
 export default {
-    components: { UserList},
 setup(){
     const { 
             currentPage,
